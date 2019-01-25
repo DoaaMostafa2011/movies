@@ -1,4 +1,5 @@
 package com.example.android.moviesapp;
+import java.util.Date;
 
 /**
  * Created by Engineer on 1/20/2019.
@@ -23,4 +24,5 @@ public class movie {
     public void setPath(String path) {
         this.mPath = path;
     }
+    
 }

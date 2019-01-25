@@ -73,9 +73,9 @@ private String getURLResult(String urlString){
         JSONObject jsonObject = new JSONObject(jsonString);
         JSONArray jsonArray = jsonObject.getJSONArray("results");
         for (int i = 0; i < jsonArray.length(); i++) {
-            String posterPath = jsonArray.getJSONObject(i).getString("logo_path");
-            String title = jsonArray.getJSONObject(i).getString("name");
-            chosenList.add(new movie(posterPath, title));
+            String posterPath = jsonArray.getJSONObject(i).getString("poster_path");
+            String title =  jsonArray.getJSONObject(i).getString("original_title");
+            chosenList.add(new movie(title,posterPath ));
         }
     } catch (JSONException e) {
         e.printStackTrace();

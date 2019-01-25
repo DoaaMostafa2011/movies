@@ -1,7 +1,9 @@
 package com.example.android.moviesapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -28,16 +31,21 @@ public class MainActivity extends AppCompatActivity {
     private movieListFetcher.listType mCurrentListType = MOST_POPULAR;
 
 
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        adapter = new RecyclerViewAdapter();
         setContentView(R.layout.activity_main);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         new LoadMovieList().execute(MOST_POPULAR);
         recyclerView =  findViewById(R.id.rv);
         GridLayoutManager manager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
     }
+
 
     /*@Nullable
     @Override
@@ -48,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }*/
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        movies = new movieListFetcher().getTopRatedList();
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.list_type, menu);
         return true;
@@ -145,6 +158,19 @@ public class MainActivity extends AppCompatActivity {
                 String fullPath = movieListFetcher.POSTER_BASE_URL_STRING + movieListFetcher.POSTER_SIZE_W185 + posterPath;
                 //Log.d(TAG, fullPath);
                 Picasso.get().load(fullPath).into(posterView);
+                addOnClickListener(position);
+            }
+            public void addOnClickListener(final int position) {
+                posterView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Toast.makeText( MainActivity.this, "You clicked image view # " + position, Toast.LENGTH_SHORT).show();
+                        Context context = MainActivity.this;
+                        Class destinationActivity = detailActivity.class;
+                        Intent intent = new Intent(context,destinationActivity);
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }
