@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         public class viewHolder extends RecyclerView.ViewHolder {
             ImageView posterView;
 
@@ -165,9 +166,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //Toast.makeText( MainActivity.this, "You clicked image view # " + position, Toast.LENGTH_SHORT).show();
+                        if (position == RecyclerView.NO_POSITION) return;
+                        movie movie = adapter.getItem(position);
                         Context context = MainActivity.this;
                         Class destinationActivity = detailActivity.class;
                         Intent intent = new Intent(context,destinationActivity);
+                        intent.putExtra("movie", movie);
                         startActivity(intent);
                     }
                 });
