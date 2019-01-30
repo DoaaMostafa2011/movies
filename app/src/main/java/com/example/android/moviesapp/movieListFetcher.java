@@ -75,7 +75,10 @@ private String getURLResult(String urlString){
         for (int i = 0; i < jsonArray.length(); i++) {
             String posterPath = jsonArray.getJSONObject(i).getString("poster_path");
             String title =  jsonArray.getJSONObject(i).getString("original_title");
-            chosenList.add(new movie(title,posterPath ));
+            String date = jsonArray.getJSONObject(i).getString("release_date");
+            double voteAverage = jsonArray.getJSONObject(i).getDouble("vote_average");
+            String overView = jsonArray.getJSONObject(i).getString("overview");
+            chosenList.add(new movie(title,posterPath,date,voteAverage,overView));
         }
     } catch (JSONException e) {
         e.printStackTrace();

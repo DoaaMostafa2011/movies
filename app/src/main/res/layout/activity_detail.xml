@@ -1,87 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/activity_detail">
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".detailActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/detailTextView"
-        android:background="@color/colorSecondary"
-        android:textColor="@color/colorWhite"
-        android:textSize="25sp"
-        android:paddingLeft="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="30dp"
-        android:paddingBottom="25dp"
-        android:text="Header Movie"/>
+        android:minHeight="300dp"
+        android:orientation="horizontal"
+        >
 
-    <ScrollView
+        <ImageView
+            android:id="@+id/imageview_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingEnd="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="2dp"
+            android:paddingStart="5dp">
+
+            <TextView
+                android:id="@+id/textview_release_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Release_date_title"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+            <TextView
+                android:id="@+id/textview_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="2dp"
+                android:paddingEnd="2dp"
+                android:textSize="@dimen/abc_text_size_large_material" />
+
+            <TextView
+                android:id="@+id/textview_vote_average_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vote_averag_title"
+                android:paddingTop="10dp"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+            <TextView
+                android:id="@+id/textview_vote_average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="2dp"
+                android:paddingEnd="2dp"
+                android:textSize="@dimen/abc_text_size_large_material" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/detailTextView">
+        android:orientation="vertical">
 
-        <RelativeLayout
+
+        <TextView
+            android:id="@+id/textview_original_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Title"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp"
+            android:textSize="@dimen/abc_text_size_headline_material" />
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/posterImageView"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"/>
-
             <TextView
+                android:id="@+id/textview_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/releaseDate"
-                android:text="7th July, 1996"
-                android:layout_alignTop="@+id/posterImageView"
-                android:layout_toRightOf="@+id/posterImageView"
-                android:layout_toEndOf="@+id/posterImageView"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:textSize="20sp"/>
+                 />
 
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rating"
-                android:layout_alignLeft="@+id/releaseDate"
-                android:layout_alignStart="@+id/releaseDate"
-                android:layout_below="@+id/releaseDate"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="true"
-                android:stepSize="0.25"
-                android:layout_marginTop="20dp"
-                android:rating="5.0"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingTextView"
-                android:layout_below="@+id/rating"
-                android:layout_alignLeft="@+id/rating"
-                android:layout_alignStart="@+id/rating"
-                android:text="8.1/10"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/overviewTextView"
-                android:layout_below="@+id/posterImageView"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Some text here"/>
-
-        </RelativeLayout>
-    </ScrollView>
-
-</RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

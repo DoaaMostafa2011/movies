@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">moviesApp</string>
+    <string name="heading_release_date">Release Date</string>
+    <!-- Headline for user vote average -->
+    <string name="heading_vote_average">Vote Average</string>
+    <!-- Runtime text -->
+    <string name="no_release_date_found">No release date found</string>
+    <string name="no_summary_found">No summary was found</string>
+
+    <string name="Release_date_title">Release Date:</string>
+    <string name="vote_averag_title">Vote Average:</string>
+    <string name="Title">Title</string>
+
 </resources>

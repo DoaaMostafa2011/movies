@@ -144,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
                 return 0;
             }
         }
+        public movie getItem(int position) {
+            return movies.get(position);
+        }
 
 
         public class viewHolder extends RecyclerView.ViewHolder {

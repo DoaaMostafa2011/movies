@@ -12,15 +12,15 @@ import java.util.Date;
 public class movie implements Parcelable {
     private String mName;
     private String mPath;
-    Date releaseDate;
-    float voteAverage;
+    String releaseDate;
+    double voteAverage;
     String plotSynopsis;
 
     public movie(String name, String path) {
         mName = name;
         mPath = path;
     }
-    public movie(String title, String imagePath, Date release, float voteAverage,String plotSynopsis ) {
+    public movie(String title, String imagePath, String release, double voteAverage,String plotSynopsis ) {
         mName = title;
         mPath = imagePath;
         releaseDate = release;
@@ -39,13 +39,13 @@ public class movie implements Parcelable {
     public void setPath(String path) {
         this.mPath = path;
     }
-    public Date getReleaseDate(){
+    public String getReleaseDate(){
         return releaseDate;
     }
-    public void setReleaseDate(Date date){
+    public void setReleaseDate(String date){
         releaseDate = date;
     }
-    public float getVoteAverage(){
+    public double getVoteAverage(){
         return voteAverage;
     }
     public void setVoteAverage(float voteAverage){
@@ -64,8 +64,8 @@ public class movie implements Parcelable {
         //write all properties to the parcle
         dest.writeString(mName);
         dest.writeString(mPath);
-        dest.writeLong(releaseDate.getTime());
-        dest.writeFloat(voteAverage);
+        dest.writeString(releaseDate);
+        dest.writeDouble(voteAverage);
         dest.writeString(plotSynopsis);
     }
 
@@ -74,8 +74,8 @@ public class movie implements Parcelable {
         //read and set saved values from parcel
         mName = parcel.readString();
         mPath = parcel.readString();
-        releaseDate = new Date(parcel.readLong());
-        voteAverage = parcel.readFloat();
+        releaseDate = parcel.readString();
+        voteAverage = parcel.readDouble();
         plotSynopsis = parcel.readString();
     }
 
