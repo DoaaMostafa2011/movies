@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppCompat"
         >
 
-        <activity android:name=".detailActivity"
+        <activity android:name=".DetailActivity"
             android:label="Details"
             android:parentActivityName=".MainActivity" >
 

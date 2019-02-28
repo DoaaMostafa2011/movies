@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.util.Date;
-
-public class detailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +22,7 @@ public class detailActivity extends AppCompatActivity {
         TextView tvReleaseDate = (TextView) findViewById(R.id.textview_release_date);
 
         Intent intentThatStartedThisActivity = getIntent();
-        movie movie = intentThatStartedThisActivity.getParcelableExtra("movie");
+        Movie movie = intentThatStartedThisActivity.getParcelableExtra("Movie");
         tvOriginalTitle.setText(movie.getName());
 
         String posterPath = movie.getPath();
@@ -34,7 +30,8 @@ public class detailActivity extends AppCompatActivity {
         //Log.d(TAG, fullPath);
 
         Picasso.get()
-                .load(fullPath).into(ivPoster);
+                .load(fullPath)
+                .into(ivPoster);
 
         String overView = movie.getPlotSynopsis();
         if (overView == null) {

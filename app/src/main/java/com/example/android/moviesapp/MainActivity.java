@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +26,7 @@ import static com.example.android.moviesapp.movieListFetcher.listType.TOP_RATED;
 public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView;
-    public ArrayList<movie> movies  = new ArrayList<>() ;
+    public ArrayList<Movie> movies  = new ArrayList<>() ;
     private movieListFetcher.listType mCurrentListType = MOST_POPULAR;
 
 
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 return 0;
             }
         }
-        public movie getItem(int position) {
+        public Movie getItem(int position) {
             return movies.get(position);
         }
 
@@ -170,11 +169,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         //Toast.makeText( MainActivity.this, "You clicked image view # " + position, Toast.LENGTH_SHORT).show();
                         if (position == RecyclerView.NO_POSITION) return;
-                        movie movie = adapter.getItem(position);
+                        Movie movie = adapter.getItem(position);
                         Context context = MainActivity.this;
-                        Class destinationActivity = detailActivity.class;
+                        Class destinationActivity = DetailActivity.class;
                         Intent intent = new Intent(context,destinationActivity);
-                        intent.putExtra("movie", movie);
+                        intent.putExtra("Movie", movie);
                         startActivity(intent);
                     }
                 });

@@ -1,26 +1,23 @@
 package com.example.android.moviesapp;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Property;
-
-import java.util.Date;
 
 /**
  * Created by Engineer on 1/20/2019.
  */
 
-public class movie implements Parcelable {
+public class Movie implements Parcelable {
     private String mName;
     private String mPath;
     String releaseDate;
     double voteAverage;
     String plotSynopsis;
 
-    public movie(String name, String path) {
+    public Movie(String name, String path) {
         mName = name;
         mPath = path;
     }
-    public movie(String title, String imagePath, String release, double voteAverage,String plotSynopsis ) {
+    public Movie(String title, String imagePath, String release, double voteAverage, String plotSynopsis ) {
         mName = title;
         mPath = imagePath;
         releaseDate = release;
@@ -70,7 +67,7 @@ public class movie implements Parcelable {
     }
 
     //constructor used for parcel
-    public movie(Parcel parcel){
+    public Movie(Parcel parcel){
         //read and set saved values from parcel
         mName = parcel.readString();
         mPath = parcel.readString();
@@ -80,16 +77,16 @@ public class movie implements Parcelable {
     }
 
     //creator - used when un-parceling our parcle (creating the object)
-    public static final Parcelable.Creator<movie> CREATOR = new Parcelable.Creator<movie>(){
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>(){
 
         @Override
-        public movie createFromParcel(Parcel parcel) {
-            return new movie(parcel);
+        public Movie createFromParcel(Parcel parcel) {
+            return new Movie(parcel);
         }
 
         @Override
-        public movie[] newArray(int size) {
-            return new movie[0];
+        public Movie[] newArray(int size) {
+            return new Movie[0];
         }
     };
 

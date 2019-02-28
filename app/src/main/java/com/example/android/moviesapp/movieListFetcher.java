@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public class movieListFetcher {
     public static final String API_KEY_STRING = "?api_key=5c1e3e7fda53000aca69577d6f8e7353";
-    public static final String TOP_RATED_URL_STRING = "http://api.themoviedb.org/3/movie/top_rated";
-    public static final String MOST_POPULAR_URL_STRING = "http://api.themoviedb.org/3/movie/popular";
+    public static final String TOP_RATED_URL_STRING = "http://api.themoviedb.org/3/Movie/top_rated";
+    public static final String MOST_POPULAR_URL_STRING = "http://api.themoviedb.org/3/Movie/popular";
     public static final String POSTER_BASE_URL_STRING = "http://image.tmdb.org/t/p/";
     public static final String POSTER_SIZE_W185 = "w185";
-    public String request = "https://api.themoviedb.org/3/movie/550?api_key=5c1e3e7fda53000aca69577d6f8e7353";
-    public enum listType  {TOP_RATED, MOST_POPULAR}
+    public String request = "https://api.themoviedb.org/3/Movie/550?api_key=5c1e3e7fda53000aca69577d6f8e7353";
+    public enum listType  {TOP_RATED, MOST_POPULAR, FAVORITES}
 
 private String getURLResult(String urlString){
     StringBuilder urlResult = new StringBuilder();
@@ -50,16 +50,18 @@ private String getURLResult(String urlString){
     }
     return urlResult.toString() ;
 }
-    public ArrayList<movie> getMostPopularList() {
+    public ArrayList<Movie> getMostPopularList() {
         return getMovieList(listType.MOST_POPULAR);
     }
 
-    public ArrayList<movie> getTopRatedList() {
+    public ArrayList<Movie> getTopRatedList() {
         return getMovieList(listType.TOP_RATED);
     }
 
-    private ArrayList<movie> getMovieList (listType type) {
-    ArrayList<movie> chosenList = new ArrayList<>();
+    public ArrayList<Movie> getFavorites() { return getMovieList(listType.FAVORITES); }
+
+    private ArrayList<Movie> getMovieList (listType type) {
+    ArrayList<Movie> chosenList = new ArrayList<>();
     String jsonString = "there is no internet connection";
     switch (type) {
         case TOP_RATED:
@@ -67,6 +69,9 @@ private String getURLResult(String urlString){
             break;
         case MOST_POPULAR:
             jsonString = getURLResult(MOST_POPULAR_URL_STRING + API_KEY_STRING);
+            break;
+        case FAVORITES:
+            // TODO RETURN arraylist of movies using asyncTaskLoader from database
             break;
     }
     try {
@@ -78,7 +83,7 @@ private String getURLResult(String urlString){
             String date = jsonArray.getJSONObject(i).getString("release_date");
             double voteAverage = jsonArray.getJSONObject(i).getDouble("vote_average");
             String overView = jsonArray.getJSONObject(i).getString("overview");
-            chosenList.add(new movie(title,posterPath,date,voteAverage,overView));
+            chosenList.add(new Movie(title,posterPath,date,voteAverage,overView));
         }
     } catch (JSONException e) {
         e.printStackTrace();
